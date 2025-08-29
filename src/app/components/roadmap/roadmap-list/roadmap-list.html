@@ -1,0 +1,14 @@
+<mat-stepper orientation="vertical" #stepper>
+  @for (item of data; track item.id) {
+  <mat-step>
+    <ng-template matStepLabel>Шаг {{ item.position }}: {{ item.title }}</ng-template>
+    <div>
+      {{ item.description }}
+    </div>
+    <div>
+      <a [href]="item.url" target="_blank" matButton>Подробнее</a>
+      <button matButton matStepperNext>Следующий шаг</button>
+    </div>
+  </mat-step>
+  }
+</mat-stepper>
