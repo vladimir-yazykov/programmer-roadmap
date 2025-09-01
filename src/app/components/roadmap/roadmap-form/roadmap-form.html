@@ -2,14 +2,21 @@
   <div class="group">
     <mat-form-field class="field">
       <mat-label>Название</mat-label>
-      <input matInput />
+      <input [(ngModel)]="title" matInput />
+    </mat-form-field>
+  </div>
+
+  <div class="group">
+    <mat-form-field class="field">
+      <mat-label>Номер шага</mat-label>
+      <input matInput type="number" [(ngModel)]="position" />
     </mat-form-field>
   </div>
 
   <div class="group">
     <mat-form-field appearance="fill" class="field">
       <mat-label>Ссылка</mat-label>
-      <input matInput placeholder="URL" />
+      <input matInput placeholder="URL" [(ngModel)]="url" />
       <mat-icon matSuffix>link</mat-icon>
       <mat-hint>Документация или статья</mat-hint>
     </mat-form-field>
@@ -18,7 +25,12 @@
   <div class="group">
     <mat-form-field class="field">
       <mat-label>Краткое описание</mat-label>
-      <textarea matInput placeholder="Всё о технологии"></textarea>
+      <textarea matInput placeholder="Всё о технологии" [(ngModel)]="description"></textarea>
     </mat-form-field>
   </div>
+
+  <button matFab extended (click)="submitForm()">
+    <mat-icon> add</mat-icon>
+    Добавить шаг
+  </button>
 </div>
