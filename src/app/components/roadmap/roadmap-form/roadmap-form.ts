@@ -1,10 +1,13 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { RoadmapItem } from '../../../models/roadmap-item.model';
+
+export type RoadmapFormSubmitData = Omit<RoadmapItem, 'id'>;
 
 @Component({
   selector: 'app-roadmap-form',
@@ -13,16 +16,13 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './roadmap-form.scss',
 })
 export class RoadmapForm {
-  private http = inject(HttpClient);
-
-  @Input()
   title = '';
-  @Input()
   position = 1;
-  @Input()
   url = '';
-  @Input()
   description = '';
+
+  @Output()
+  submit = new EventEmitter<RoadmapFormSubmitData>();
 
   submitForm() {
     const body = {
@@ -32,6 +32,6 @@ export class RoadmapForm {
       description: this.description,
     };
 
-    this.http.post('http://localhost:3000/', body).subscribe();
+    this.submit.emit(body);
   }
 }

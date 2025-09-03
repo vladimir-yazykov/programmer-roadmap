@@ -1,4 +1,4 @@
 <app-container>
-  <app-roadmap-form />
-  <app-roadmap-list />
+  <app-roadmap-form (submit)="addItem($event)" />
+  <app-roadmap-list [data]="data" (stepRemoved)="removeStep($event)" />
 </app-container>

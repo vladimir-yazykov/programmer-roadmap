@@ -1,8 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatStepperModule } from '@angular/material/stepper';
-import { roadmapListData } from './roadmap-list.data';
 import { MatButtonModule } from '@angular/material/button';
-import { HttpClient } from '@angular/common/http';
 import { RoadmapItem } from '../../../models/roadmap-item.model';
 @Component({
   selector: 'app-roadmap-list',
@@ -11,12 +9,9 @@ import { RoadmapItem } from '../../../models/roadmap-item.model';
   styleUrl: './roadmap-list.scss',
 })
 export class RoadmapList {
-  private http = inject(HttpClient);
+  @Input()
   data: RoadmapItem[] = [];
 
-  ngOnInit() {
-    this.http.get<RoadmapItem[]>('http://localhost:3000/').subscribe((response) => {
-      this.data = response;
-    });
-  }
+  @Output()
+  stepRemoved = new EventEmitter<string>();
 }

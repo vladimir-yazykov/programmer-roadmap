@@ -8,6 +8,7 @@
     <div>
       <a [href]="item.url" target="_blank" matButton>Подробнее</a>
       <button matButton matStepperNext>Следующий шаг</button>
+      <button matButton (click)="stepRemoved.emit(item.id)">Удалить</button>
     </div>
   </mat-step>
   }
